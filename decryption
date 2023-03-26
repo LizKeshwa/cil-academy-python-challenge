@@ -1,0 +1,53 @@
+import random
+
+# A basic encryption algorithm...
+def encrypt(plaintext, key):
+    alphabet = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    ciphertext = ""
+    for i in range(0,len(plaintext)):
+        character = plaintext[i]
+        ciphertext = ciphertext + character
+        for j in range (0,key):
+            ciphertext = ciphertext + random.choice(alphabet)
+    return ciphertext
+
+# A basic decryption algorithm...
+def decrypt(ciphertext, key):
+    plaintext = ""
+    for i in range(key, len(ciphertext), key+1):
+        plaintext += ciphertext[i-key]
+    return plaintext
+
+# Main program starts here...
+# Sample ciphertexts and keys
+ciphertexts = [
+    "YFwoJeELOvlDVrOlNBDConouLwhdCCmkIjsYeKsuaGsDbSRJymLJVOaYNQRrgKBSifPOdnCbUleWCbf",
+    "HNABntvVepMaQSNHyKxQTXZf HVbQXcqJSXfswOAuRBzpefOdfBeylimeqDHDlFc",
+    "PqKgakYBpfzveAHVrrUgbzpkaMWUcskukxac QfsWpFSrTrwiaQRtSsXesGlrBqv",
+    "HXelrEed fCxojmVersu Gtehvee NSluGnJ",
+    "PHcRrveeRUmDnfqMFAnBJvvwyzSDrj tqXhrLRXIegaDLwdInIGCvqelcjzU",
+    "CaLbsilDbelGGgb RbbSAWPZgcOsdVavIdSdxxfVeHQtvmJxDfyCYwo",
+"pcxzGsKfyLKdZRObtAwohNmWhlbFnIJiofcYDeWjnNOFpdYUiqeLVqcKsUXJWeYttITQzGpFaILWQkRU!BwhehCh"
+]
+keys = [4, 7, 3, 1, 5, 4, 7]
+
+# Loop through each ciphertext and key
+for i in range(len(ciphertexts)):
+    ciphertext = ciphertexts[i]
+    key = keys[i]
+
+    # Decrypt the ciphertext using the key
+    plaintext = decrypt(ciphertext, key)
+
+    # Output the plaintext
+    print(f"Plaintext {i+1}: {plaintext}")
+
+
+└─$ python3 workactivity.py
+Plaintext 1: Yellow submarine
+Plaintext 2: Hey Jude
+Plaintext 3: Paperback Wrater
+Plaintext 4: Here Comes the Sun
+Plaintext 5: Penny Lane
+Plaintext 6: Cil Academy
+Plaintext 7: pythonista!
